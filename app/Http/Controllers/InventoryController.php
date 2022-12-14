@@ -23,13 +23,11 @@ class InventoryController extends Controller
      */
     public function __invoke(InventoryRequest $request)
     {                                
-
         $valuation = $this->inventoryService->getValuation($request->get('quantity'));
 
         return response()->json([
             'success' => true,
             'message' => "{$request->get('quantity')} unit applied at $".$valuation."",
-        ]);
-        
+        ]);        
     }
 }

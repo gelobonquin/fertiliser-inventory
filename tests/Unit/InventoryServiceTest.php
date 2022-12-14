@@ -2,20 +2,20 @@
 
 namespace Tests\Unit;
 
-use App\Actions\CreateInventoryApplication;
-use App\Services\InventoryService;
-use App\Models\Inventory;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\Inventory;
+use Mockery\MockInterface;
+use App\Services\InventoryService;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Mockery;
 
 class InventoryServiceTest extends TestCase
 {
     use RefreshDatabase;
 
     protected InventoryService $inventoryService;
-
-    protected CreateInventoryApplication $createInvetoryApplication;
 
     protected function setUp(): void
     {
@@ -39,50 +39,43 @@ class InventoryServiceTest extends TestCase
             'unit_price' => 15.00
         ]);
 
-        $this->inventoryService = new InventoryService();
-
-        $this->createInvetoryApplication = new CreateInventoryApplication();
-    }
-
-    public function test_request_quantity_more_than_available_stock()
-    {
-        $this->assertTrue($this->inventoryService->isMoreThanAvailableStock(6));        
-    }
-
-    public function test_request_quantity_less_than_available_stock()
-    {
-        $this->assertFalse($this->inventoryService->isMoreThanAvailableStock(4));        
-    }
-
-    public function test_inventory_available_stock()
-    {
-        $this->assertEquals(5, $this->inventoryService->stock());
-    }
-
-    public function test_inventory_in_stock()
-    {
-        $this->postJson('/api/inventory', ['quantity' => 1])
-            ->assertStatus(200);
-
-        $this->assertTrue($this->inventoryService->inStock());
-    }  
-    
-    public function test_can_get_inventory()
-    {
-        $this->assertCount(3, $this->inventoryService->inventories());
-    }
-
-    public function test_inventory_valuation_calculation()
-    {
-        $this->assertEquals(20.00, $this->inventoryService->calculateValuation(10, 1, 10));
-    }
-
-    public function test_can_process_inventories()
-    {
-        $this->createInvetoryApplication->handle(1);
+        Inventory::factory()->create([
+            'type' => 'Application',
+            'quantity' => -2,
+            'unit_price' => 0
+        ]);
         
-        $this->assertEquals("10.00", $this->inventoryService->getValuation());
+        $this->inventoryService = Mockery::mock(InventoryService::class)->makePartial();
     }
-    
 
+    public function test_get_purchases()
+    {
+        $this->assertCount(3, $this->inventoryService->getPurchases());
+        $this->assertInstanceOf(Collection::class, $this->inventoryService->getPurchases());
+    }
+
+    public function test_get_total_applications()
+    {
+        $this->assertEquals(-2, $this->inventoryService->getTotalApplications());
+    }
+
+    public function test_get_calculate_valuation()
+    {
+        $inventories = $this->inventoryService->getPurchases();
+        $this->assertEquals(80, $this->inventoryService->calculateValuation($inventories));        
+    }
+
+    public function test_get_purchases_with_remaining_quantity()
+    {
+        $purchases = $this->inventoryService->getPurchasesWithRemainingQuantity();
+
+        collect($purchases)->each(function($purchase) {
+            $this->assertNotEquals(0, $purchase->quantity);
+        });                
+    }
+
+    public function test_get_valuation()
+    {   
+        $this->assertEquals(35.0, $this->inventoryService->getValuation(2));
+    }
 }

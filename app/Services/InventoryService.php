@@ -6,7 +6,7 @@ use App\Models\Inventory;
 
 class InventoryService
 {
-
+    
     /**
      * Get the valuation of applied purchase
      *

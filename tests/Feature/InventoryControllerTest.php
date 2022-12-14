@@ -36,46 +36,30 @@ class InventoryControllerTest extends TestCase
 
     }
     
-    public function test_request_empty_input()
+    public function test_request_quantity_is_empty()
     {
         $this->postJson('/api/inventory', ['quantity' => null])
             ->assertStatus(422);
     }
 
-    public function test_request_invalid_input()
+    public function test_request_quantity_is_invalid()
     {
         $this->postJson('/api/inventory', ['quantity' => 'asdasd'])
             ->assertStatus(422);
     }
 
-    public function test_request_no_stock()
-    {
-        Inventory::factory()->create([
-            'type' => Inventory::TYPE_APPLICATION,
-            'quantity' => -5
-        ]);
-
-        $this->postJson('/api/inventory', ['quantity' => 1])
-            ->assertStatus(400);
-    }
-
-    public function test_request_quantity_more_than_available_stock()
+    public function test_request_quantity_exceeds_available_stock()
     {
         $this->postJson('/api/inventory', ['quantity' => 6])
-            ->assertStatus(400);
+            ->assertStatus(422);
     }
 
-    public function test_request_quantity_applied()
+    public function test_get_valuation()
     {
         $this->postJson('/api/inventory', ['quantity' => 2])
-            ->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'message' => '2 unit applied at $30.00.',
-                'remaining_quantity' => "3"
+                'message' => '2 unit applied at $30'
             ]);
-
-        $this->assertDatabaseHas('inventories', ['type' => 'Application', 'quantity' => -2]);            
-    }
-    
+    }    
 }
