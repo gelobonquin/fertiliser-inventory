@@ -17594,7 +17594,6 @@ __webpack_require__.r(__webpack_exports__);
         quantity: ''
       },
       errors: new _Error__WEBPACK_IMPORTED_MODULE_0__["default"](),
-      invalidResponse: '',
       successResponse: ''
     };
   },
@@ -17607,7 +17606,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.successResponse = response.data;
       })["catch"](function (error) {
         _this.catchValidationError(error);
-        _this.catchInvalidResponse(error);
       });
     },
     catchValidationError: function catchValidationError(error) {
@@ -17622,7 +17620,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     clearError: function clearError() {
       this.errors.clear();
-      this.invalidResponse = '';
     },
     clearSuccess: function clearSuccess() {
       this.successResponse = '';
@@ -17653,7 +17650,7 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-lg font-bold text-gray-700 my-3 text-center"
-}, "Fertilizer Inventory", -1 /* HOISTED */);
+}, "Inventory Valuation", -1 /* HOISTED */);
 var _hoisted_4 = {
   "class": "shadow rounded-md bg-white p-4"
 };
@@ -17697,26 +17694,11 @@ var _hoisted_13 = {
 };
 var _hoisted_14 = {
   key: 1,
-  "class": "mt-5 border-t-4 rounded-b px-4 py-3 shadow-md bg-teal- d-100 border-teal-500 text-teal-500",
+  "class": "justify-center mt-5 rounded-md flex items-center border border-blue-500 bg-blue-100 text-white text-sm font-bold px-4 py-3",
   role: "alert"
 };
 var _hoisted_15 = {
-  "class": "flex"
-};
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "py-1"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
-  "class": "text-teal-500 fill-current h-6 w-6 mr-4",
-  xmlns: "http://www.w3.org/2000/svg",
-  viewBox: "0 0 20 20"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
-  d: "M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"
-})])], -1 /* HOISTED */);
-var _hoisted_17 = {
-  "class": "font-bold"
-};
-var _hoisted_18 = {
-  "class": "text-sm"
+  "class": "text-sm text-blue-500"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -17734,7 +17716,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: key,
       "class": "text-red-600 text-sm"
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error), 1 /* TEXT */);
-  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8], 32 /* HYDRATE_EVENTS */)]), $data.invalidResponse ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.invalidResponse.message), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, "Stock on hand: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.invalidResponse.remaining_quantity), 1 /* TEXT */)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.successResponse ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.successResponse.message), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_18, "Stock on hand: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.successResponse.remaining_quantity), 1 /* TEXT */)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+  }), 128 /* KEYED_FRAGMENT */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8], 32 /* HYDRATE_EVENTS */)]), _ctx.invalidResponse ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.invalidResponse.message), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_13, "Stock on hand: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.invalidResponse.remaining_quantity), 1 /* TEXT */)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.successResponse ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.successResponse.message), 1 /* TEXT */)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
 }
 
 /***/ }),

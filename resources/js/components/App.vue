@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center mt-32 items-center">
         <div class="w-full sm:w-1/3 mx-5">
-            <h1 class="text-lg font-bold text-gray-700 my-3 text-center">Fertilizer Inventory</h1>
+            <h1 class="text-lg font-bold text-gray-700 my-3 text-center">Inventory Valuation</h1>
             <div class="shadow rounded-md bg-white p-4">
                 <form @submit.prevent="onSubmit">
                     <div class="mt-5">
@@ -32,16 +32,8 @@
                     </div>
                 </div>
             </div>
-            <div v-if="successResponse" class="mt-5 border-t-4 rounded-b px-4 py-3 shadow-md bg-teal- d-100 border-teal-500 text-teal-500" role="alert">
-                <div class="flex">
-                    <div class="py-1">
-                        <svg
-                            class="text-teal-500 fill-current h-6 w-6 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
-                    <div>
-                    <p class="font-bold">{{ successResponse.message }}</p>
-                    <p class="text-sm">Stock on hand: {{ successResponse.remaining_quantity }}</p>
-                    </div>
-                </div>
+            <div v-if="successResponse" class="justify-center mt-5 rounded-md flex items-center border border-blue-500 bg-blue-100 text-white text-sm font-bold px-4 py-3" role="alert">
+                <p class="text-sm text-blue-500">{{ successResponse.message }}</p>
             </div>
             
         </div>        
@@ -59,22 +51,20 @@ export default {
                 quantity: ''
             },
             errors: new Error(),
-            invalidResponse: '',
             successResponse: '' 
         }
     },
     methods: {
         onSubmit() {
             this.clearError();            
-            this.clearSuccess();            
+            this.clearSuccess();
+                        
             axios.post('/api/inventory', this.form)
                 .then(response => {
                     this.successResponse = response.data; 
                 })
                 .catch(error => {     
-                    this.catchValidationError(error);  
-                    this.catchInvalidResponse(error);  
-                      
+                    this.catchValidationError(error);                        
                 });
         },
         catchValidationError(error) {
@@ -89,7 +79,6 @@ export default {
         },
         clearError() {
             this.errors.clear();
-            this.invalidResponse = '';
         },
         clearSuccess() {
             this.successResponse = '';

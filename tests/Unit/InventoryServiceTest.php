@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use App\Actions\CreateInventoryApplication;
-use App\Http\Services\InventoryService;
+use App\Services\InventoryService;
 use App\Models\Inventory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

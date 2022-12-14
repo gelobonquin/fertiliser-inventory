@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\StockHasQuantity;
 use Illuminate\Foundation\Http\FormRequest;
 
 class InventoryRequest extends FormRequest
@@ -24,7 +25,7 @@ class InventoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'required|numeric|min:1'
+            'quantity' => ['required', 'numeric', 'min:1', new StockHasQuantity]
         ];
     }
 }
