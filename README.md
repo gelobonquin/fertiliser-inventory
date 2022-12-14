@@ -9,6 +9,8 @@ A simple  Laravel application that helps a user understand how much quantity of 
 - Vue 3 and Axios
 - Tailwind CSS
 
+I'm a [YAGNI](https://jasonmccreary.me/articles/practicing-yagni//) practitioner to make the application simpler to understand and don't want to over-engineer.
+
 ## Prerequisites
 - [Composer](https://getcomposer.org/) 
 - [NPM/Node](https://nodejs.org/en/) - My local machine node version is v14.17.1 and npm version is 6.14.13, but also compatible with the latest one 
