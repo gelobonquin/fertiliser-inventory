@@ -11,7 +11,7 @@ A simple  Laravel application that helps a user understand how much quantity of 
 
 ## Prerequisites
 - [Composer](https://getcomposer.org/) 
-- [NPM/Node](https://nodejs.org/en/)
+- [NPM/Node](https://nodejs.org/en/) - My local machine node version is v14.17.1 and npm version is 6.14.13, but also compatible with the latest one 
 - Nginx or [Laragon](https://laragon.org/)
 - [Valet](https://laravel.com/docs/9.x/valet)
 
