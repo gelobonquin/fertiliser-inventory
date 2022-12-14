@@ -25,7 +25,7 @@ A simple  Laravel application that helps a user understand how much quantity of 
     # Create environment variables
     cp .env.example .env
 
-    # Update DB connection in .env, make sure you are runnig with the same port
+    # Update DB connection in .env and create database, make sure you are runnig with the same port
     DB_CONNECTION=mysql
     DB_HOST=127.0.0.1
     DB_PORT=3306
