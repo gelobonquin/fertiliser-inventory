@@ -9,7 +9,7 @@ A simple  Laravel application that helps a user understand how much quantity of 
 - Vue 3 and Axios
 - Tailwind CSS
 
-I'm consider myself a [YAGNI](https://jasonmccreary.me/articles/practicing-yagni//) practitioner and [Uncle Bob](https://freek.dev/770-uncle-bob-on-object-orientation-and-the-solid-principles) fan to make the application simpler, easy to understand and avoid over-engineering.
+I consider myself a [YAGNI](https://jasonmccreary.me/articles/practicing-yagni//) practitioner and [Uncle Bob](https://freek.dev/770-uncle-bob-on-object-orientation-and-the-solid-principles) fan to make the application simpler, easy to understand and avoid over-engineering.
 
 ## Prerequisites
 - [Composer](https://getcomposer.org/) 
