@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\CreateInventoryApplication;
 use App\Http\Requests\InventoryRequest;
 use App\Http\Services\InventoryService;
 use Exception;
@@ -16,23 +17,26 @@ class InventoryController extends Controller
     }
 
     /**
-     * Request stock available
+     * Request stock available valuation
      *
-     * @param InventoryRequest $request
-     * @return void
+     * @param \App\Http\Requests\InventoryRequest $request
+     * @param \Actions\CreateInventoryApplication $createInventoryApplication
+     * @return \Illuminate\Http\Response
      */
-    public function __invoke(InventoryRequest $request)
+    public function __invoke(InventoryRequest $request, CreateInventoryApplication $createInventoryApplication)
     {        
         try {
-
-            if (! $this->inventoryService->inStock()) {
-                throw new Exception('Oops, no available stock on hand', 400);
-            }
 
             if ($this->inventoryService->isMoreThanAvailableStock($request->get('quantity'))) {
                 throw new Exception('Requested quantity is more than the total available stock.', 400);
             }
             
+            if (! $this->inventoryService->inStock()) {
+                throw new Exception('Oops, no available stock on hand', 400);
+            }            
+            
+            $createInventoryApplication->handle($request->get('quantity'));
+
             $valuation = $this->inventoryService->process($request->get('quantity'));
       
             return response()->json([

@@ -3,7 +3,6 @@
 namespace App\Http\Services;
 
 use App\Models\Inventory;
-use IntlChar;
 
 class InventoryService
 {
@@ -12,13 +11,10 @@ class InventoryService
      * And return the valuation
      *
      * @param int $quantity
-     * @return \App\Models\Inventory
+     * @return double
      */
     public function process($quantity)
     {
-        // Store the requested application quantity
-        $this->storeApplication($quantity);   
-
         $stocks = [];
         $processedValuation = [];
 
@@ -38,20 +34,21 @@ class InventoryService
                     // Retrieve the first stock purchase
                     $firstStock = reset($stocks);    
      
-                    // if application quantity is greater than the stock on hand quantity, consider the stock fully consume
+                    // if application quantity is greater than the stock on hand quantity, consider the stock fully consumed
                     if ($applicationDecreaseQuantity > $firstStock->quantity) {
 
-                        $applicationDecreaseQuantity -=  $firstStock->quantity;
+                        $applicationDecreaseQuantity -=  $firstStock->quantity;                       
 
                         // Calculate the stock valuation
                         $valuation = $this->calculateValuation($valuation, $firstStock->quantity, $firstStock->unit_price);
                     
+                        //Remove the consumed stock
                         unset($stocks[$firstStock->id]);
 
                     } else {
 
                         //Decrease stocks quantity
-                        $stocks[$firstStock->id]->quantity  -= $applicationDecreaseQuantity;
+                        $stocks[$firstStock->id]->quantity -= $applicationDecreaseQuantity;
                         
                         // Calculate the stock valuation
                         $valuation = $this->calculateValuation($valuation, $applicationDecreaseQuantity, $firstStock->unit_price);
@@ -66,20 +63,6 @@ class InventoryService
         }       
         
         return end($processedValuation);
-    }
-
-    /**
-     * Store the requested quantity
-     *
-     * @param int $quantity
-     * @return void
-     */
-    public function storeApplication($quantity)
-    {
-        Inventory::create([
-            'type' => Inventory::TYPE_APPLICATION,
-            'quantity' => abs($quantity) * -1
-        ]);
     }
 
 
