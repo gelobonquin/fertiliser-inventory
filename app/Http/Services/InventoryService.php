@@ -10,14 +10,13 @@ class InventoryService
      * Process the inventories to decreased the values based on the request application quantity
      * And return the valuation
      *
-     * @param int $quantity
      * @return double
      */
-    public function process($quantity)
+    public function getValuation()
     {
         $stocks = [];
         $processedValuation = [];
-
+        
         foreach ($this->inventories() as $inventory) {
             if ($inventory->type == Inventory::TYPE_PURCHASE) {
                 $stocks[$inventory->id] = $inventory;

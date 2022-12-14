@@ -37,7 +37,7 @@ class InventoryController extends Controller
             
             $createInventoryApplication->handle($request->get('quantity'));
 
-            $valuation = $this->inventoryService->process($request->get('quantity'));
+            $valuation = $this->inventoryService->getValuation();
       
             return response()->json([
                 'success' => true,

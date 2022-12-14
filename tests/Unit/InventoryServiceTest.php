@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Actions\CreateInventoryApplication;
 use App\Http\Services\InventoryService;
 use App\Models\Inventory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -13,6 +14,8 @@ class InventoryServiceTest extends TestCase
     use RefreshDatabase;
 
     protected InventoryService $inventoryService;
+
+    protected CreateInventoryApplication $createInvetoryApplication;
 
     protected function setUp(): void
     {
@@ -37,6 +40,8 @@ class InventoryServiceTest extends TestCase
         ]);
 
         $this->inventoryService = new InventoryService();
+
+        $this->createInvetoryApplication = new CreateInventoryApplication();
     }
 
     public function test_request_quantity_more_than_available_stock()
@@ -70,6 +75,13 @@ class InventoryServiceTest extends TestCase
     public function test_inventory_valuation_calculation()
     {
         $this->assertEquals(20.00, $this->inventoryService->calculateValuation(10, 1, 10));
+    }
+
+    public function test_can_process_inventories()
+    {
+        $this->createInvetoryApplication->handle(1);
+        
+        $this->assertEquals("10.00", $this->inventoryService->getValuation());
     }
     
 
