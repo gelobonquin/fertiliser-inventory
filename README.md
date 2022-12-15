@@ -24,7 +24,7 @@ I consider myself a [YAGNI](https://jasonmccreary.me/articles/practicing-yagni//
     # Run composer install
     composer install
 
-    # If the composer fails, please remove the composer.lock file and run the composer install again
+    # If the composer fails, remove the composer.lock file and run the composer install again
     rm composer.lock
     composer install
 
@@ -46,6 +46,11 @@ I consider myself a [YAGNI](https://jasonmccreary.me/articles/practicing-yagni//
     php artisan migrate:fresh --seed
 
     # Run npm and watch
+    npm install
+    npm run watch
+
+    # If npm install fails, remove the package-lock.json and run the npm install again
+    rm package-lock.json
     npm install
     npm run watch
 
