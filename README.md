@@ -24,6 +24,10 @@ I consider myself a [YAGNI](https://jasonmccreary.me/articles/practicing-yagni//
     # Run composer install
     composer install
 
+    # If the composer fails, please remove the composer.lock file and run the composer install again
+    rm composer.lock
+    composer install
+
     # Create environment variables
     cp .env.example .env
 
